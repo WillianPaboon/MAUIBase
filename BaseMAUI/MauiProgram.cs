@@ -28,8 +28,8 @@ namespace BaseMAUI
     		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddTransient<AppShell>();
-            builder.Services.AddTransient<AppShellViewModel>();
+            builder.Services.AddTransient<AppShell, AppShellViewModel>();
+            builder.Services.AddTransient<MainPage, MainPageViewModel>();
             builder.Services.AddSingleton(mapper);
 
             return builder.Build();

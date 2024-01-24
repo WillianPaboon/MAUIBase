@@ -1,12 +1,16 @@
-﻿namespace BaseMAUI
+﻿using BaseMAUI.ViewModels;
+using TinyMvvm;
+
+namespace BaseMAUI
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TinyView
     {
         int count = 0;
 
-        public MainPage()
+        public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = viewModel;
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
@@ -21,5 +25,6 @@
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
+
 
 }
