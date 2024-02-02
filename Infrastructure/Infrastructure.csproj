@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Configurations>Debug;Release;DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD</Configurations>
+    <Configurations>DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

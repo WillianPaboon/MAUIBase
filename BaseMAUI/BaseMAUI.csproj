@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -30,49 +30,35 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<Configurations>Debug;Release;DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD</Configurations>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
-	  <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+		<Configurations>DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGPROD|net8.0-ios|AnyCPU'">
 	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	  <DefineConstants>$(DefineConstants);DEBUGPROD</DefineConstants>
+	  <MtouchDebug>True</MtouchDebug>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGQA|net8.0-ios|AnyCPU'">
 	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	  <DefineConstants>$(DefineConstants);DEBUGQA</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
-	  <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+	  <MtouchDebug>True</MtouchDebug>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEPROD|net8.0-ios|AnyCPU'">
 	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	  <DefineConstants>$(DefineConstants);RELEASEPROD</DefineConstants>
+	  <MtouchDebug>False</MtouchDebug>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEQA|net8.0-ios|AnyCPU'">
 	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	  <DefineConstants>$(DefineConstants);RELEASEQA</DefineConstants>
+	  <MtouchDebug>False</MtouchDebug>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGQA|net8.0-android|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);DEBUGQA</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGQA|net8.0-maccatalyst|AnyCPU'">
 	  <DefineConstants>$(DefineConstants);DEBUGQA</DefineConstants>
 	</PropertyGroup>
 
@@ -80,40 +66,14 @@
 	  <DefineConstants>$(DefineConstants);DEBUGPROD</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGPROD|net8.0-maccatalyst|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);DEBUGPROD</DefineConstants>
-	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEQA|net8.0-android|AnyCPU'">
 	  <DefineConstants>$(DefineConstants);RELEASEQA</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEQA|net8.0-maccatalyst|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);RELEASEQA</DefineConstants>
-	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEPROD|net8.0-android|AnyCPU'">
 	  <DefineConstants>$(DefineConstants);RELEASEPROD</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEPROD|net8.0-maccatalyst|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);RELEASEPROD</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
