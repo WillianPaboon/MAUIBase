@@ -24,7 +24,7 @@ namespace BaseMAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
+#if DEBUG || DEBUGQA
     		builder.Logging.AddDebug();
 #endif
 
