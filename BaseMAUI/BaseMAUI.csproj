@@ -105,6 +105,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\CommonShared\CommonShared.csproj" />
 	  <ProjectReference Include="..\Domain\Domain.csproj" />
+	  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

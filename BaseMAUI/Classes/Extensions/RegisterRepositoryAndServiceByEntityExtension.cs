@@ -50,11 +50,11 @@ namespace BaseMAUI.Classes.Extensions
 
         private static void RegisterRepository(IServiceCollection services, Type repositoryType)
         {
-            var entityType = repositoryType.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IBaseRepository<>))?.GetGenericArguments().FirstOrDefault();
-            if (entityType != null)
-            {
-                services.AddSingleton(typeof(IBaseRepository<>).MakeGenericType(entityType), repositoryType);
-            }
+            //var entityType = repositoryType.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IBaseRepository<>))?.GetGenericArguments().FirstOrDefault();
+            //if (entityType != null)
+            //{
+            //    services.AddSingleton(typeof(IBaseRepository<>).MakeGenericType(entityType), repositoryType);
+            //}
         }
     }
 }

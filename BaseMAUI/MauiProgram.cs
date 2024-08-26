@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using BaseMAUI.Settings;
 using BaseMAUI.Settings.Mapper;
 using BaseMAUI.ViewModels;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TinyMvvm;
 
@@ -13,7 +13,7 @@ namespace BaseMAUI
         public static MauiApp CreateMauiApp()
         {
             IMapper mapper = AutoMapperConfig.Initialize();
-            var builder = MauiApp.CreateBuilder();
+            MauiAppBuilder builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .UseTinyMvvm()
@@ -28,11 +28,13 @@ namespace BaseMAUI
     		builder.Logging.AddDebug();
 #endif
 
+            RegisterAssemblies.RegisterServices(builder);
             builder.Services.AddTransient<AppShell, AppShellViewModel>();
             builder.Services.AddTransient<MainPage, MainPageViewModel>();
             builder.Services.AddSingleton(mapper);
 
             return builder.Build();
         }
+
     }
 }

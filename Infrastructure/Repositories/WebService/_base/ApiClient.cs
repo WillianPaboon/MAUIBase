@@ -5,13 +5,13 @@ using System.Text.Json;
 
 namespace Infrastructure.Repositories.WebService._base
 {
-    internal class ApiClient: IApiClient
+    internal class ApiClient : IApiClient
     {
         private readonly HttpClient _httpClient;
         private string _token = string.Empty;
 
         public ApiClient(string baseUrl, TimeSpan timeout = default)
-        { 
+        {
             //specify to use TLS 1.2 as default connection
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories.WebService._base
 
             //httpClientHandler.ServerCertificateCustomValidationCallback = ValidatorCertificateHelper.ValidateServerCertificate;
 
-            _httpClient = new HttpClient( httpClientHandler)
+            _httpClient = new HttpClient(httpClientHandler)
             {
                 Timeout = timeout == default ? TimeSpan.FromSeconds(30) : timeout,
                 BaseAddress = new Uri(baseUrl)
