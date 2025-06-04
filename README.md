@@ -24,3 +24,6 @@
   ##Posibles problemas Droid
   -Si al correr el proyecto en Android, ejecuta y se cierra, intentar ejecutar el archivo delete_bin_obj.hs alojado en la carpeta raiz del proyecto.
 	Si el problema persiste, asegurarse de tener el SDK instalado y referenciado en el archivo de configuración de Android.
+
+
+ [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WillianPaboon/MAUIBase)
