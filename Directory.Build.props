@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <NetVersion>net8.0</NetVersion>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>All</AnalysisMode>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <IsPackable>True</IsPackable>
+    <UseMaui>False</UseMaui>
+    <UseMaui Condition="$(MSBuildProjectName.Contains('Presentation')) Or $(MSBuildProjectName.Contains('BaseMAUI'))">true</UseMaui>
+    <!--<TargetFramework Condition="$(MSBuildProjectName.Contains('BaseMAUI')) == False">$(NetVersion)</TargetFramework>-->
+    <Configurations>DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD;Debug</Configurations>
+    <DefineConstants>$(DefineConstants);BuyMod$(BuyModule);SellMod$(SellModule)</DefineConstants>
+    <!-- Register Optional Modules -->
+    <BuyModule>0</BuyModule>
+    <SellModule>0</SellModule>
+  </PropertyGroup>
+</Project>

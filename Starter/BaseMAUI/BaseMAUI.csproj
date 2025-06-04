@@ -1,0 +1,148 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetVersion)-android;$(NetVersion)-ios</TargetFrameworks>
+    <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+    <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+    <!-- Note for MacCatalyst:
+			The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+			When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+			The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+			either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+    <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BaseMAUI</RootNamespace>
+    <SingleProject>true</SingleProject>
+    <!-- Display name -->
+    <ApplicationTitle>BaseMAUI</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.basemaui</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGPROD|net8.0-ios|AnyCPU'">
+    <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
+    <DefineConstants>$(DefineConstants);DEBUGPROD</DefineConstants>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGQA|net8.0-ios|AnyCPU'">
+    <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
+    <DefineConstants>$(DefineConstants);DEBUGQA</DefineConstants>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
+    <DefineConstants>$(DefineConstants);DEBUGQA</DefineConstants>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEPROD|net8.0-ios|AnyCPU'">
+    <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
+    <DefineConstants>$(DefineConstants);RELEASEPROD</DefineConstants>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEQA|net8.0-ios|AnyCPU'">
+    <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
+    <DefineConstants>$(DefineConstants);RELEASEQA</DefineConstants>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGQA|net8.0-android|AnyCPU'">
+    <DebugSymbols>True</DebugSymbols>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidEnableFastDeployment>True</AndroidEnableFastDeployment>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+	<AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+	<AndroidTlsProvider>native</AndroidTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+    <DebugSymbols>True</DebugSymbols>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidEnableFastDeployment>True</AndroidEnableFastDeployment>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+	<AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+	<AndroidTlsProvider>native</AndroidTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='DEBUGPROD|net8.0-android|AnyCPU'">
+    <DebugSymbols>True</DebugSymbols>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidEnableFastDeployment>True</AndroidEnableFastDeployment>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEQA|net8.0-android|AnyCPU'">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <DebugSymbols>False</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <PublishTrimmed>True</PublishTrimmed>
+    <AndroidEnableFastDeployment>False</AndroidEnableFastDeployment>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='RELEASEPROD|net8.0-android|AnyCPU'">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <DebugSymbols>False</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <PublishTrimmed>True</PublishTrimmed>
+    <AndroidEnableFastDeployment>False</AndroidEnableFastDeployment>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" />
+    <PackageReference Include="Microsoft.Maui.Controls" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
+    <PackageReference Include="TinyMvvm.Maui" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Shared\SharedPresentation\SharedPresentation.csproj" />
+    <ProjectReference Include="..\..\Modules\Shared\CommonShared\CommonShared.csproj" />
+    <ProjectReference Include="..\..\Modules\Shared\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Shared\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\UserConfig\UserConfigPresentation\UserConfigPresentation.csproj" />
+	<ProjectReference Include="..\..\Modules\UserConfig\UserConfigDomain\UserConfigDomain.csproj" />
+	<ProjectReference Include="..\..\Modules\UserConfig\UserConfigInfrastructure\UserConfigInfrastructure.csproj" />
+    <ProjectReference Condition="'$(BuyModule)' == '1'" Include="..\..\Modules\Buy\BuyDomain\BuyDomain.csproj" />
+    <ProjectReference Condition="'$(SellModule)' == '1'" Include="..\..\Modules\Sell\SellDomain\SellDomain.csproj" />
+  </ItemGroup>
+</Project>
