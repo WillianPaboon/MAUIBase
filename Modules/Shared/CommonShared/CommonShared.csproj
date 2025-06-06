@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper"/>
+    <Compile Remove="Classes\**" />
+    <Compile Remove="Settings\**" />
+    <EmbeddedResource Remove="Classes\**" />
+    <EmbeddedResource Remove="Settings\**" />
+    <None Remove="Classes\**" />
+    <None Remove="Settings\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Settings\" />
+    <PackageReference Include="AutoMapper" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 ﻿using CommonShared.Exceptions;
 using CommunityToolkit.Mvvm.Input;
+using Domain.Models.ValueObjects.Primitives;
+using SharedPresentation.Classes.Extensions;
 using SharedPresentation.Classes.Helpers;
 using SharedPresentation.Pages;
 using System.Diagnostics;
@@ -8,6 +10,7 @@ using System.Text.Json.Serialization;
 using System.Windows.Input;
 using TinyMvvm;
 using UserConfigDomain.Services;
+using UserConfigDomain.UseCases;
 
 namespace UserConfigPresentation.Pages.Login
 {
@@ -16,43 +19,35 @@ namespace UserConfigPresentation.Pages.Login
         public string Email { get; set; }
         public string Password { get; set; }
 
-        private readonly ILoginService _loginService;
+        private readonly ILoginUseCase _login;
 
-        public LoginPageViewModel(ILoginService loginService)
+        public LoginPageViewModel(ILoginUseCase login)
         {
-            _loginService = loginService;
+            _login = login;
         }
 
         public ICommand LoginCommand => new Command(LogginCommandImplementation);
 
         private async void LogginCommandImplementation(object obj)
         {
-            try
+            IsBusy = true;
+            Result result = await _login.Execute(Email, Password).ConfigureAwait(true);
+
+            if(result.IsSuccess)
             {
-                IsBusy = true;
-                var token = await _loginService.LoginAsync(Email, Password).ConfigureAwait(true);
+                NavigationService.SetRootPage("Home");
             }
-            catch(WebServiceErrorException ex) when (ex.Message.Contains("access_denied", StringComparison.OrdinalIgnoreCase))
+            else
             {
-                await ExceptionHelper.Handle(new UnauthorizedAccessException(JsonSerializer.Deserialize<Dictionary<string, string>>(ex.Message)?["error_description"]), 
-                    new Dictionary<string, string>
-                    {
-                        { "Email", Email },
-                        { "Password", Password }
-                    }).ConfigureAwait(true);
+                if (Application.Current?.MainPage == null)
+                    return;
+
+                await Application.Current.MainPage.DisplayAlert("Alert", result.Message, "Okay").ConfigureAwait(true);
+
             }
-            catch (Exception ex)
-            {
-                await ExceptionHelper.Handle(ex, new Dictionary<string, string>
-                {
-                    { "Email", Email },
-                    { "Password", Password }
-                }).ConfigureAwait(true);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+
+            IsBusy = false;
+
         }
     }
 }

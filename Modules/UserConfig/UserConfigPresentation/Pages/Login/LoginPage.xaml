@@ -8,7 +8,6 @@
     Title="LoginPage">
     <ScrollView>
         <VerticalStackLayout Spacing="0" BackgroundColor="White">
-
             <VerticalStackLayout BackgroundColor="#B5C900" Padding="20,40,20,30">
                 <Label Text="Welcome to" FontSize="22" TextColor="#1C2D57" />
                 <Label Text="Argos ONE" FontSize="28" FontAttributes="Bold" TextColor="#1C2D57" />

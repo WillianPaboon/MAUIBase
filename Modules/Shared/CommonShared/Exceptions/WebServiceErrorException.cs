@@ -1,21 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommonShared.Exceptions
+﻿namespace CommonShared.Exceptions
 {
-    public class WebServiceErrorException: Exception
+    /// <summary>
+    /// Represents an exception that occurs during a web service error.
+    /// </summary>
+    public class WebServiceErrorException : Exception
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebServiceErrorException"/> class.
+        /// </summary>
         public WebServiceErrorException()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebServiceErrorException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message">The message that describes the error.</param>
         public WebServiceErrorException(string message) : base(message)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebServiceErrorException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">The message that describes the error.</param>
+        /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public WebServiceErrorException(string message, Exception innerException) : base(message, innerException)
         {
         }

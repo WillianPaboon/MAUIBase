@@ -23,7 +23,7 @@ namespace BaseMAUI.Classes.Extensions
         public static MauiAppBuilder RegisterServicesFromAssembly(this MauiAppBuilder mauiAppBuilder, Assembly assembly)
         {
             Type[] types = assembly.GetTypes();
-            Dictionary<string,Type> allServices = types.Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Repository")).ToDictionary(t => t.Name, t => t);
+            Dictionary<string,Type> allServices = types.Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Repository") || t.Name.EndsWith("UseCase")).ToDictionary(t => t.Name, t => t);
 
             foreach (KeyValuePair<string, Type> implementation in allServices.Where(serv => serv.Value.IsClass))
             {

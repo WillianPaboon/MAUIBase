@@ -32,6 +32,7 @@ namespace SharedPresentation.Pages
         {
             var indicator = new ActivityIndicator();
             indicator.BindingContext = this;
+            indicator.Color = Colors.Red;
             indicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(IsBusy));
             Application.Current?.MainPage?.InsertLogicalChild(1,indicator);
 
