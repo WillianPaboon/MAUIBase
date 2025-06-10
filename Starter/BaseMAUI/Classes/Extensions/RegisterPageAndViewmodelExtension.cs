@@ -1,5 +1,7 @@
 ﻿
+using BaseMAUI.Classes.Helpers;
 using SharedPresentation.Classes.Extensions;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using UserConfigPresentation.Pages.Login;
 
@@ -18,16 +20,12 @@ namespace BaseMAUI.Classes.Extensions
         /// <returns>The MauiAppBuilder with the registered services.</returns>
         public static MauiAppBuilder RegisterPageAndViewmodelWithConvention(this MauiAppBuilder mauiAppBuilder)
         {
-            RegisterPagesByAssembly(mauiAppBuilder, typeof(App).Assembly);
-            RegisterPagesByAssembly(mauiAppBuilder, typeof(LoginPage).Assembly);
+            ReadOnlyCollection<Assembly> assemblies = AssembliesHelper.GetsAllPresentationAssemblies();
 
-#if BuyMod1
-            RegisterPagesByAssembly(mauiAppBuilder, typeof(BuyDomain.Class1).Assembly);
-#endif
-#if SellModule
-            RegisterPagesByAssembly(mauiAppBuilder, typeof(SellDomain.Class1).Assembly);
-#endif
-
+            foreach (Assembly assembly in assemblies)
+            {
+                RegisterPagesByAssembly(mauiAppBuilder, assembly);
+            }
 
             return mauiAppBuilder;
         }

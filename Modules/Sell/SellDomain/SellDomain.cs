@@ -1,6 +1,6 @@
 ﻿namespace SellDomain
 {
-    public class Class1
+    public class SellDomain
     {
 
     }

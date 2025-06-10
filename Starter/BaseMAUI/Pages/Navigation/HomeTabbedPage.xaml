@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BaseMAUI.Pages.Navigation.HomeTabbedPage"
+    xmlns:homePage="clr-namespace:BaseMAUI.Pages.Home;assembly=BaseMAUI"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    Title="HomeTabbedPage">
+    <NavigationPage Title="Home">
+        <x:Arguments>
+            <homePage:MainHomePage />
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

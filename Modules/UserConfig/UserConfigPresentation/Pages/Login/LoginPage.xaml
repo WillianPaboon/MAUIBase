@@ -5,6 +5,7 @@
     x:Class="UserConfigPresentation.Pages.Login.LoginPage"
     xmlns:base="clr-namespace:SharedPresentation.Pages;assembly=SharedPresentation"
     xmlns:loginPage="clr-namespace:UserConfigPresentation.Pages.Login"
+    x:DataType="loginPage:LoginPageViewModel"
     Title="LoginPage">
     <ScrollView>
         <VerticalStackLayout Spacing="0" BackgroundColor="White">
@@ -26,11 +27,7 @@
                 <Label HorizontalOptions="End" FontSize="12" TextColor="#1C2D57" TextDecorations="Underline">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Forgot your password?">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                                </Span.GestureRecognizers>
-                            </Span>
+                            <Span Text="Forgot your password?"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

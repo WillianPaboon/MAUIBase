@@ -8,7 +8,7 @@ namespace SharedPresentation.Pages
     /// BasePage class that inherits from TinyView.
     /// </summary>
     /// <typeparam name="T"> ViewModel</typeparam>
-    public abstract class BasePage<T> : TinyView, INavigablePage
+    public abstract class BasePage<T> : TinyView
     {
         ///<inheritdoc/>
         public object? Parameters { get; set; }

@@ -1,14 +1,12 @@
 ﻿using BaseMAUI.Classes.Extensions;
 using CommonShared.Constants;
 using CommunityToolkit.Maui;
-using Infrastructure.Repositories.WebService._base;
 using Microsoft.Extensions.Logging;
 using System.Net;
-using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using TinyMvvm;
-using UserConfigInfrastructure.Repositories;
+using MediatR;
 
 namespace BaseMAUI
 {
@@ -24,6 +22,7 @@ namespace BaseMAUI
                 .UseMauiCommunityToolkit()
                 .RegisterPageAndViewmodelWithConvention()
                 .RegisterServices()
+                .RegisterMediator()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

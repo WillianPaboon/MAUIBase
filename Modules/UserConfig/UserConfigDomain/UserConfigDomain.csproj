@@ -15,8 +15,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Sell\SellDomain\SellDomain.csproj" />
 	  <ProjectReference Include="..\..\Shared\Domain\Domain.csproj" />
 	  <ProjectReference Include="..\UserConfigInfrastructure\UserConfigInfrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\ValueObjects\" />
 	</ItemGroup>
 
 </Project>

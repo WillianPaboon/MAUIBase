@@ -1,41 +1,39 @@
-﻿using CommonShared.Exceptions;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Domain.Models.ValueObjects.Primitives;
 using SharedPresentation.Classes.Extensions;
-using SharedPresentation.Classes.Helpers;
 using SharedPresentation.Pages;
-using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Windows.Input;
-using TinyMvvm;
-using UserConfigDomain.Services;
 using UserConfigDomain.UseCases;
 
 namespace UserConfigPresentation.Pages.Login
 {
-    public class LoginPageViewModel: BaseViewModel
+    public partial class LoginPageViewModel : BaseViewModel
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-
         private readonly ILoginUseCase _login;
+
+        [ObservableProperty]
+        private string email = "argosonesupport@argos.com.co";
+
+        [ObservableProperty]
+        private string password = "Cambiar.200";
+
 
         public LoginPageViewModel(ILoginUseCase login)
         {
             _login = login;
         }
 
-        public ICommand LoginCommand => new Command(LogginCommandImplementation);
 
-        private async void LogginCommandImplementation(object obj)
+        [RelayCommand]
+        private async void Login(object obj)
         {
             IsBusy = true;
             Result result = await _login.Execute(Email, Password).ConfigureAwait(true);
 
             if(result.IsSuccess)
             {
-                NavigationService.SetRootPage("Home");
+                NavigationService.SetRootPage("MainHomePage");
             }
             else
             {

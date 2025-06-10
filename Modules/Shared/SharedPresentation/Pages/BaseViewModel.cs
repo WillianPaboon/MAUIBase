@@ -6,7 +6,7 @@ namespace SharedPresentation.Pages
     /// <summary>
     /// Base ViewModel class providing common functionality for all ViewModels.
     /// </summary>
-    public abstract class BaseViewModel : TinyViewModel, INavigablePage
+    public abstract class BaseViewModel : TinyViewModel
     {
         ///<inheritdoc/>
         public object? Parameters { get; set; }
@@ -15,15 +15,6 @@ namespace SharedPresentation.Pages
         /// Gets the object responsible for handling stack-based navigation
         /// </summary>
         public Microsoft.Maui.Controls.INavigation NavigationService { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseViewModel"/> class with the specified service provider.
-        /// </summary>
-        /// <param name="serviceProvider">The service provider to use for dependency injection.</param>
-        protected BaseViewModel(IServiceProvider serviceProvider)
-        {
-            // Initialize Global dependencies
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseViewModel"/> class.

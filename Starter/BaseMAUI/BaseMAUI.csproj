@@ -133,6 +133,7 @@
     <PackageReference Include="TinyMvvm.Maui" />
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+	<PackageReference Include="MediatR" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Shared\SharedPresentation\SharedPresentation.csproj" />
@@ -144,5 +145,16 @@
 	<ProjectReference Include="..\..\Modules\UserConfig\UserConfigInfrastructure\UserConfigInfrastructure.csproj" />
     <ProjectReference Condition="'$(BuyModule)' == '1'" Include="..\..\Modules\Buy\BuyDomain\BuyDomain.csproj" />
     <ProjectReference Condition="'$(SellModule)' == '1'" Include="..\..\Modules\Sell\SellDomain\SellDomain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Pages\Home\MainHomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Pages\Navigation\HomeTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 </Project>

@@ -12,11 +12,12 @@
     <IsPackable>True</IsPackable>
     <UseMaui>False</UseMaui>
     <UseMaui Condition="$(MSBuildProjectName.Contains('Presentation')) Or $(MSBuildProjectName.Contains('BaseMAUI'))">true</UseMaui>
+    <!-- Register Optional Modules -->
+    <BuyModule>1</BuyModule>
+    <SellModule>0</SellModule>
+	
     <!--<TargetFramework Condition="$(MSBuildProjectName.Contains('BaseMAUI')) == False">$(NetVersion)</TargetFramework>-->
     <Configurations>DEBUGQA;DEBUGPROD;RELEASEQA;RELEASEPROD;Debug</Configurations>
     <DefineConstants>$(DefineConstants);BuyMod$(BuyModule);SellMod$(SellModule)</DefineConstants>
-    <!-- Register Optional Modules -->
-    <BuyModule>0</BuyModule>
-    <SellModule>0</SellModule>
   </PropertyGroup>
 </Project>

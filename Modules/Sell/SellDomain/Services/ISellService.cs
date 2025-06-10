@@ -1,4 +1,8 @@
-﻿namespace SellDomain.Services
+﻿using Domain.Mediator.Contracts;
+using MediatR;
+using System.Threading.Tasks;
+
+namespace SellDomain.Services
 {
     /// <summary>
     /// Interface for selling services.
@@ -8,7 +12,7 @@
         /// <summary>
         /// Sells a product.
         /// </summary>
-        void SellProduct();
+        Task<string> SellProduct();
     }
 
     /// <summary>
@@ -16,12 +20,21 @@
     /// </summary>
     public class SellService : ISellService
     {
+        private IMediator _mediator;
+
+        public SellService(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         /// <summary>
         /// Sells a product.
         /// </summary>
-        public void SellProduct()
+        public async Task<string> SellProduct()
         {
-            //Sell product
+            var request = new GetBuyDataRequest {};
+            string result = await _mediator.Send(request).ConfigureAwait(true);
+            return result;
         }
     }
 }

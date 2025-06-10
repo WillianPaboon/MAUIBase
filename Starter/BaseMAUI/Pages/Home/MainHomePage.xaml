@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage x:TypeArguments="homePage:MainHomePageViewModel" 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BaseMAUI.Pages.Home.MainHomePage"
+    xmlns:homePage="clr-namespace:BaseMAUI.Pages.Home"
+    xmlns:base="clr-namespace:SharedPresentation.Pages;assembly=SharedPresentation"
+    x:DataType="homePage:MainHomePageViewModel"
+    Title="MainHomePage">
+    <VerticalStackLayout Padding="15">
+        
+        <Button 
+            Text="Get Buy Module Data"
+            Command="{Binding GetBuyDataImplementationCommand}"/>
+        
+        <Label
+            Text="{Binding BuyModuleData,Mode=OneWay}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</base:BasePage>
